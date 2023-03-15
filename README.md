@@ -16,7 +16,7 @@
 python get_team_names_JSON.py
 
 ```
-
+If you alredy have it and executed the file, you'll need to delete it and run the program again
 This file will get all the data from table table found in "https://www.espn.com/mens-college-basketball/stats/team/_/season/2023" and writting into a JSON file
 
 > Then you can run the next file:
