@@ -75,9 +75,8 @@ def generate_statistics():
     driver.quit()
 
 
-# Loop through each table and extract the data
     for table in tables:
-        # Initialize an empty list to store the data from this table
+
         table_data = []
         
         # Get the headers of the table (the first row)
@@ -87,27 +86,20 @@ def generate_statistics():
         
         # Loop through each row of the table (excluding the first row)
         for tr in table.find_all("tr")[1:]:
-            # Initialize an empty dictionary to store the data from this row
             row_data = {}
             
-            # Loop through each cell of the row and add the data to the dictionary
             for i, td in enumerate(tr.find_all("td")):
                 row_data[headers[i]] = td.text.strip()
             
-            # Add the dictionary to the list of data from this table
             table_data.append(row_data)
         
-        # Add the list of data from this table to the overall list of data
         data.append(table_data)
 
-    # from the first table, get the data for the first item and join with the first item in the second table and do that for all items in the first table
     for i, item in enumerate(data[0]):
         item.update(data[1][i])
 
-    # Remove the second table from the data
     data.pop(1)
 
-    # Write the data to a JSON file
     with open("basketball_stats.json", "w") as outfile:
         json.dump(data, outfile)
 
