@@ -9,26 +9,6 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import os
 
-
-def get_teams_names():
-
-    url_teams_names = 'https://www.ncaa.com/march-madness-live/bracket'
-    response = requests.get(url_teams_names)
-    html = response.content
-
-    
-    soup = BeautifulSoup(html, 'html.parser')
-
-    # Find all the team names in the bracket
-    team_names = []
-    for team in soup.find_all('p', class_='body body_2 color_lvl_-5'):
-        team_names.append(team.text)
-
-    # remove all the empty strings from the list
-    team_names = list(filter(None, team_names))
-    return team_names
-
-
 def generate_statistics():
 
     url = "https://www.espn.com/mens-college-basketball/stats/team/_/season/2023"
